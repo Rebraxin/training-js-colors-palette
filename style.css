@@ -124,7 +124,7 @@ svg {
 /* Slider */
 input[type="range"] {
   -webkit-appearance: none;
-  margin: 0.5rem 0;
+  margin: 1rem 0;
   width: 100%;
   position: relative;
   border-radius: 1rem;
@@ -133,29 +133,16 @@ input[type="range"] {
 
 input[type=range]::-webkit-slider-thumb {
   -webkit-appearance: none;
-  height: 20px;
-  width: 20px;
-  border-radius: 10px;
+  height: 24px;
+  width: 24px;
+  border-radius: 12px;
   background: #ffffff;
   cursor: pointer;
-  margin-top: 0px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+  margin-top: -3px;
+  margin-bottom: -3px;
+  box-shadow: 1px 1px 1px rgb(31, 33, 63), 0px 0px 1px rgb(31, 33, 63);
 }
-
-
 
 input[type=range]:focus {
   outline: none;
 }
-
-input[type=range]::-ms-track {
-  width: 100%;
-  cursor: pointer;
-
-  /* Hides the slider so custom styles can be added */
-  background: transparent; 
-  border-color: transparent;
-  color: transparent;
-}
-
-
