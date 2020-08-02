@@ -78,16 +78,16 @@ svg {
   right: 0;
   padding: 0.5rem 0.7rem;
   border-radius: 0 1rem 0 1rem;
-  border: solid 1px rgb(73, 73, 73);
-  background: rgb(73, 73, 73);
+  border: solid 1px rgb(34, 36, 70);
+  background: rgb(34, 36, 70);
   color: white;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
 .sliders button:hover {
-  background: rgb(58, 58, 58);
-  border: solid 1px rgb(58, 58, 58);
+  background: rgb(19, 21, 39);
+  border: solid 1px rgb(19, 21, 39);
 }
 
 .controls {
@@ -102,15 +102,22 @@ svg {
   height: 20vh;
 }
 
-.panel button {
+.panel button,
+.submit-save {
   font-size: 1.2rem;
   margin: 1rem;
   padding: 1rem 2rem;
-  background: rgb(31, 33, 63);
+  background: rgb(34, 36, 70);
   border: none;
   color: white;
   cursor: pointer;
   border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.panel button:hover,
+.submit-save:hover {
+  background: rgb(19, 21, 39);
 }
 
 .panel p {
@@ -154,7 +161,7 @@ input[type="range"]::-webkit-slider-thumb {
   cursor: pointer;
   margin-top: -5px;
   margin-bottom: -5px;
-  border: solid 2px rgb(73, 73, 73);
+  border: solid 2px rgb(34, 36, 70);
   /* box-shadow: 1px 1px 1px rgb(31, 33, 63), 0px 0px 1px rgb(31, 33, 63); */
   box-shadow: 0px 0px 2px rgb(255, 255, 255);
 }
@@ -163,7 +170,9 @@ input[type="range"]:focus {
   outline: none;
 }
 
-.copy-container {
+.copy-container,
+.save-container,
+.library-container {
   position: fixed;
   top: 0%;
   left: 0%;
@@ -178,7 +187,9 @@ input[type="range"]:focus {
   pointer-events: none;
 }
 
-.copy-popup {
+.copy-popup,
+.save-popup,
+.library-popup {
   background: white;
   display: flex;
   flex-direction: column;
@@ -191,16 +202,48 @@ input[type="range"]:focus {
   min-height: 30vh;
 }
 
-.copy-popup h4 {
+.copy-popup h4,
+.save-popup h4,
+.library-popup h4 {
   font-size: 2rem;
   padding: 2rem;
 }
 
-.copy-container.active {
+.copy-container.active,
+.save-container.active,
+.library-container.active {
   opacity: 1;
   pointer-events: all;
 }
 
-.copy-popup.active {
+.copy-popup.active,
+.save-popup.active,
+.library-popup.active {
   transform: translateY(0rem);
+}
+
+.save-name {
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.close-save,
+.close-library {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 0 1rem 0 1rem;
+  border: solid 1px rgb(34, 36, 70);
+  background: rgb(34, 36, 70);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.close-save:hover,
+.close-library:hover {
+  background: rgb(19, 21, 39);
+  border: solid 1px rgb(19, 21, 39);
 }
