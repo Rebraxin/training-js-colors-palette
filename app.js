@@ -1,12 +1,17 @@
 // Selections & Variables
 const colorDivs = document.querySelectorAll(".color");
-const generateBtn = document.querySelector(".generate");
+const generateButton = document.querySelector(".generate");
 const sliders = document.querySelectorAll('input[type="range"]');
 const currentHexes = document.querySelectorAll(".color h2");
 const popup = document.querySelector(".copy-container");
+const adjustButton = document.querySelectorAll(".adjust");
+const lockButton = document.querySelectorAll(".lock");
+const closeAdjustements = document.querySelectorAll(".close-adjustement");
+const sliderContainers = document.querySelectorAll(".sliders");
 let initialColors;
 
 // Events listeners
+generateButton.addEventListener("click", randomColors);
 sliders.forEach((slider) => {
   slider.addEventListener("input", hslControls);
 });
@@ -23,9 +28,19 @@ currentHexes.forEach((hex) => {
 popup.addEventListener("transitionend", () => {
   const popupBox = popup.children[0];
   setTimeout(() => {
-    popup.classList.remove("active")
+    popup.classList.remove("active");
     popupBox.classList.remove("active");
   }, 600);
+});
+adjustButton.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    openAdjustementPanel(index);
+  });
+});
+closeAdjustements.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    closeAdjustementPanel(index);
+  });
 });
 
 // Functions
@@ -59,6 +74,11 @@ function randomColors() {
   });
   // Reset Inputs
   resetInputs();
+  // Checking button contrast
+  adjustButton.forEach((button, index) => {
+    checkTextContrast(initialColors[index], button);
+    checkTextContrast(initialColors[index], lockButton[index]);
+  });
 }
 
 function checkTextContrast(color, text) {
@@ -156,6 +176,14 @@ function copyToClipboard(hex) {
   const popupBox = popup.children[0];
   popup.classList.add("active");
   popupBox.classList.add("active");
+}
+
+function openAdjustementPanel(index) {
+  sliderContainers[index].classList.toggle("active");
+}
+
+function closeAdjustementPanel(index) {
+  sliderContainers[index].classList.remove("active");
 }
 
 randomColors();
