@@ -9,7 +9,7 @@ const lockButton = document.querySelectorAll(".lock");
 const closeAdjustements = document.querySelectorAll(".close-adjustement");
 const sliderContainers = document.querySelectorAll(".sliders");
 let initialColors;
-let savedPalettes = [];
+let savedPalettes = []; 
 
 // Events listeners
 generateButton.addEventListener("click", randomColors);
