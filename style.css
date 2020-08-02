@@ -271,21 +271,6 @@ input[type="range"]:focus {
   transition: all 0.3s ease-in-out;
 }
 
-/* .clear-palette {
-  position: absolute;
-  top: 0.3rem;
-  right: 4rem;
-  font-size: 1.1rem;
-  cursor: pointer;
-  font-weight: bold;
-  width: 70px;
-  height: 30px;
-  border-radius: 15px;
-  border: solid 1px rgb(34, 36, 70);
-  background: rgb(34, 36, 70);
-  color: white;
-} */
-
 .close-save:hover,
 .close-library:hover {
   background: rgb(19, 21, 39);

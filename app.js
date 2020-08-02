@@ -215,7 +215,6 @@ function lockLayer(evt, index) {
 }
 
 // Implement Save Palette & Local Storage
-
 // Selections
 const saveButton = document.querySelector(".save");
 const submitSave = document.querySelector(".submit-save");
@@ -225,7 +224,6 @@ const saveInput = document.querySelector(".save-container input");
 const libraryContainer = document.querySelector(".library-container");
 const libraryButton = document.querySelector(".library");
 const closeLibraryButton = document.querySelector(".close-library");
-// const clearLibrary = document.querySelector('.clear-palette');
 
 // Events Listeners
 saveButton.addEventListener("click", openPalette);
@@ -233,7 +231,6 @@ closeSave.addEventListener("click", closePalette);
 submitSave.addEventListener("click", savePalette);
 libraryButton.addEventListener("click", openLibrary);
 closeLibraryButton.addEventListener("click", closeLibrary);
-// clearLibrary.addEventListener("click", clearPalette);
 
 // Functions
 function openPalette(evt) {
@@ -387,11 +384,6 @@ function getLocal() {
     });
   }
 }
-
-// function clearPalette() {
-//   localStorage.clear();
-//   closeLibrary();
-// }
 
 // localStorage.clear();
 getLocal();
