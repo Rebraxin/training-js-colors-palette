@@ -161,6 +161,7 @@ input[type="range"]:focus {
   height: 100%;
   display: flex;
   justify-content: center;
+  transition: all 0.5s ease-in-out;
   align-items: center;
   opacity: 0;
   pointer-events: none;
@@ -190,5 +191,5 @@ input[type="range"]:focus {
 }
 
 .copy-popup.active {
-  transform: translateY(0);
+  transform: translateY(0rem);
 }
