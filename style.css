@@ -256,10 +256,12 @@ input[type="range"]:focus {
 
 .close-library {
   position: absolute;
-  top: .3rem;
-  right: .3rem;
-  padding: .6rem ;
-  border-radius: 20px;
+  top: 0.3rem;
+  right: 0.3rem;
+  width: 30px;
+  height: 30px;
+  /* padding: .6rem ; */
+  border-radius: 15px;
   border: solid 1px rgb(34, 36, 70);
   background: rgb(34, 36, 70);
   color: white;
@@ -268,6 +270,22 @@ input[type="range"]:focus {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
 }
+
+/* .clear-palette {
+  position: absolute;
+  top: 0.3rem;
+  right: 4rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  font-weight: bold;
+  width: 70px;
+  height: 30px;
+  border-radius: 15px;
+  border: solid 1px rgb(34, 36, 70);
+  background: rgb(34, 36, 70);
+  color: white;
+} */
+
 .close-save:hover,
 .close-library:hover {
   background: rgb(19, 21, 39);
@@ -304,7 +322,6 @@ input[type="range"]:focus {
   height: 5rem;
   flex: 1;
 }
-
 
 .pick-palette-button {
   height: 5rem;

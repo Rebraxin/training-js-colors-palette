@@ -225,6 +225,7 @@ const saveInput = document.querySelector(".save-container input");
 const libraryContainer = document.querySelector(".library-container");
 const libraryButton = document.querySelector(".library");
 const closeLibraryButton = document.querySelector(".close-library");
+// const clearLibrary = document.querySelector('.clear-palette');
 
 // Events Listeners
 saveButton.addEventListener("click", openPalette);
@@ -232,6 +233,7 @@ closeSave.addEventListener("click", closePalette);
 submitSave.addEventListener("click", savePalette);
 libraryButton.addEventListener("click", openLibrary);
 closeLibraryButton.addEventListener("click", closeLibrary);
+// clearLibrary.addEventListener("click", clearPalette);
 
 // Functions
 function openPalette(evt) {
@@ -259,7 +261,14 @@ function savePalette(evt) {
     colors.push(hex.innerText);
   });
   // Generate Object
-  let paletteNr = savedPalettes.length;
+  const paletteObjects = JSON.parse(localStorage.getItem("palettes"));
+  let paletteNr;
+  if (paletteObjects) {
+    paletteNr = paletteObjects.length;
+  } else {
+    paletteNr = savedPalettes.length;
+  }
+
   const paletteObject = { name, colors, nr: paletteNr };
   savedPalettes.push(paletteObject);
   // console.log(savedPalettes);
@@ -282,6 +291,21 @@ function savePalette(evt) {
   paletteButton.classList.add("pick-palette-button");
   paletteButton.classList.add(paletteObject.nr);
   paletteButton.innerText = "Select";
+
+  // Attach event to select button
+  paletteButton.addEventListener("click", (evt) => {
+    closeLibrary();
+    const paletteIndex = evt.target.classList[1];
+    initialColors = [];
+    savedPalettes[paletteIndex].colors.forEach((color, index) => {
+      initialColors.push(color);
+      colorDivs[index].style.backgroundColor = color;
+      const text = colorDivs[index].children[0];
+      checkTextContrast(color, text);
+      updateTextUI(index);
+    });
+    resetInputs();
+  });
 
   // Append to Library
   palette.appendChild(title);
@@ -313,4 +337,62 @@ function closeLibrary() {
   popup.classList.remove("active");
 }
 
+function getLocal() {
+  if (localStorage.getItem("palettes") === null) {
+    //Local Palettes
+    localPalettes = [];
+  } else {
+    const paletteObjects = JSON.parse(localStorage.getItem("palettes"));
+    // *2
+
+    savedPalettes = [...paletteObjects];
+    paletteObjects.forEach(paletteObject => {
+      //Generate the palette for Library
+      const palette = document.createElement("div");
+      palette.classList.add("custom-palette");
+      const title = document.createElement("h4");
+      title.innerText = paletteObject.name;
+      const preview = document.createElement("div");
+      preview.classList.add("small-preview");
+      paletteObject.colors.forEach(smallColor => {
+        const smallDiv = document.createElement("div");
+        smallDiv.style.backgroundColor = smallColor;
+        preview.appendChild(smallDiv);
+      });
+      const paletteBtn = document.createElement("button");
+      paletteBtn.classList.add("pick-palette-button");
+      paletteBtn.classList.add(paletteObject.nr);
+      paletteBtn.innerText = "Select";
+
+      //Attach event to the btn
+      paletteBtn.addEventListener("click", e => {
+        closeLibrary();
+        const paletteIndex = e.target.classList[1];
+        initialColors = [];
+        paletteObjects[paletteIndex].colors.forEach((color, index) => {
+          initialColors.push(color);
+          colorDivs[index].style.backgroundColor = color;
+          const text = colorDivs[index].children[0];
+          checkTextContrast(color, text);
+          updateTextUI(index);
+        });
+        resetInputs();
+      });
+
+      //Append to Library
+      palette.appendChild(title);
+      palette.appendChild(preview);
+      palette.appendChild(paletteBtn);
+      libraryContainer.children[0].appendChild(palette);
+    });
+  }
+}
+
+// function clearPalette() {
+//   localStorage.clear();
+//   closeLibrary();
+// }
+
+// localStorage.clear();
+getLocal();
 randomColors();
