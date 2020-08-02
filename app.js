@@ -42,6 +42,11 @@ closeAdjustements.forEach((button, index) => {
     closeAdjustementPanel(index);
   });
 });
+lockButton.forEach((button, index) => {
+  button.addEventListener("click", evt => {
+    lockLayer(evt, index);
+  });
+});
 
 // Functions
 // Color Generator
@@ -52,17 +57,26 @@ function generateHex() {
 
 function randomColors() {
   initialColors = [];
+
   colorDivs.forEach((div, index) => {
     const hexText = div.children[0];
     const randomColor = generateHex();
-    initialColors.push(chroma(randomColor).hex());
 
+    // Add it in array
+    if(div.classList.contains('locked')) {
+      initialColors.push(hexText.innerText);
+      return;
+    } else {
+      initialColors.push(chroma(randomColor).hex());
+    }
+    
     // Add color to the background
     div.style.backgroundColor = randomColor;
     hexText.innerText = randomColor;
+    
     // Check for contrast
     checkTextContrast(randomColor, hexText);
-
+    
     // Initial Colorise Sliders
     const color = chroma(randomColor);
     const sliders = div.querySelectorAll(".sliders input");
@@ -72,8 +86,10 @@ function randomColors() {
 
     colorizeSliders(color, hue, brightness, saturation);
   });
+  
   // Reset Inputs
   resetInputs();
+  
   // Checking button contrast
   adjustButton.forEach((button, index) => {
     checkTextContrast(initialColors[index], button);
@@ -184,6 +200,18 @@ function openAdjustementPanel(index) {
 
 function closeAdjustementPanel(index) {
   sliderContainers[index].classList.remove("active");
+}
+
+function lockLayer(evt, index) {
+  const lockSVG = evt.target.children[0];
+  const activeBg = colorDivs[index];
+  activeBg.classList.toggle("locked");
+
+  if (lockSVG.classList.contains("fa-lock-open")) {
+    evt.target.innerHTML = '<i class="fas fa-lock"></i>';
+  } else {
+    evt.target.innerHTML = '<i class="fas fa-lock-open"></i>';
+  }
 }
 
 randomColors();
