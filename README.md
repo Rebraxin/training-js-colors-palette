@@ -2,7 +2,7 @@
 
 Application permettant de générer des palette de couleurs aléatoirement. Pour la gestion de la hue, brightness, saturation et la conversion en héxadécimal j'ai fait appel a Chroma.js.
 
-## [Live Demo](https://rebraxin.github.io/training-js-colors-palette/)
+# 👉 [Live Demo](https://rebraxin.github.io/training-js-colors-palette/) 🖱
 
  
 ![thumbnail]
